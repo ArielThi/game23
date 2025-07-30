@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/vite-env.d.ts","./src/game/gamemanager.ts","./src/game/gamescene.ts","./src/services/database.ts","./src/types/game.ts","./src/app.vue","./src/components/gamehud.vue","./src/components/gameoverscreen.vue","./src/components/helloworld.vue","./src/components/startscreen.vue"],"version":"5.8.3"}
