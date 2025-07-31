@@ -1,68 +1,25 @@
-## 🎯 Cómo Jugar
+## 1. ¿Cómo funciona el juego?
+El juego es un arcade donde el jugador debe moverse para esquivar objetos rojos y recoger monedas doradas.
+Se controla con las flechas del teclado.
+Por cada moneda recogida se suman 10 puntos.
+Por cada segundo sobrevivido se suma 1 punto.
+Si el jugador toca un objeto rojo, el juego termina y aparece la pantalla de Game Over mostrando la puntuación final, el tiempo sobrevivido y un ranking de los mejores puntajes.
 
-1. **Movimiento:** Usa las flechas ← y → del teclado para mover tu personaje
-2. **Evita objetos rojos:** Tocar un objeto rojo termina el juego
-3. **Recoge monedas:** Las monedas doradas te dan +10 puntos
-4. **Supervivencia:** Ganas +1 punto por segundo que sobrevivas
-5. **Dificultad progresiva:** La velocidad aumenta con el tiempo
+## 2. ¿Cómo se conectan las distintas partes?
+**Frontend:**
+Hecho con Vue.js para la interfaz y Phaser para la lógica y renderizado del juego.
+Los componentes de Vue controlan las pantallas de inicio, juego y Game Over.
+El componente principal (App.vue) gestiona el estado global y comunica los eventos entre Vue y Phaser.
 
-## 🛠️ Tecnologías Utilizadas
+*Lógica del juego:*
+Toda la lógica de colisiones, movimiento y generación de objetos está en GameScene.ts usando Phaser.
+Cuando ocurre un evento importante (sube el score, pasa el tiempo, Game Over), se llama a un callback que actualiza el estado en Vue.
+Base de datos local:
 
-- **Vue.js 3** - Framework reactivo para la interfaz
-- **TypeScript** - Tipado estático para mejor mantenimiento
-- **Phaser.js** - Motor de juego 2D profesional
-- **IndexedDB** - Base de datos local para puntuaciones
-- **Vite** - Build tool rápido y moderno
-- **CSS3** - Estilos modernos con gradientes y glassmorphism
+Se usa **IndexedDB** para guardar los puntajes localmente en el navegador.
+Al terminar una partida, el puntaje se guarda y se actualiza la tabla de mejores puntajes.
 
-## 📁 Estructura del Proyecto
-
-```
-src/
-├── components/          # Componentes Vue
-│   ├── StartScreen.vue     # Pantalla de inicio
-│   ├── GameHUD.vue         # HUD del juego
-│   └── GameOverScreen.vue  # Pantalla de game over
-├── game/               # Lógica del juego Phaser
-│   ├── GameScene.ts        # Escena principal del juego
-│   └── GameManager.ts      # Gestor de conexión Vue-Phaser
-├── services/           # Servicios de la aplicación
-│   └── database.ts         # Servicio IndexedDB
-├── types/              # Definiciones TypeScript
-│   └── game.ts             # Tipos del juego
-├── App.vue             # Componente principal
-├── main.ts             # Punto de entrada
-└── style.css           # Estilos globales
-```
-
-## 🔧 Instalación y Desarrollo
-
-### Requisitos Previos
-- Node.js (versión 16 o superior)
-- npm o yarn
-
-### Instalación
-```bash
-# Clonar el repositorio
-git clone [URL_DEL_REPOSITORIO]
-cd evita-objetos-game
-
-# Instalar dependencias
-npm install
-
-# Ejecutar en modo desarrollo
-npm run dev
-```
-
-### Scripts Disponibles
-```bash
-npm run dev      # Servidor de desarrollo
-npm run build    # Build para producción
-npm run preview  # Preview del build
-npm run deploy   # Deploy a GitHub Pages
-```
-
-## 🌐 Deployment en GitHub Pages
+## 3. ¿Cómo se integró y desplegó en GitHub Pages?
 
 ### Configuración Automática
 
@@ -84,7 +41,7 @@ npm install --save-dev gh-pages
 npm run deploy
 ```
 
-### Configuración Manual GitHub Pages
+Configuración Manual GitHub Pages
 
 1. Ve a **Settings** > **Pages** en tu repositorio
 2. Selecciona **Source**: Deploy from branch
@@ -93,11 +50,14 @@ npm run deploy
 
 El juego estará disponible en: `https://[tu-usuario].github.io/[nombre-repositorio]`
 
-## 📊 Base de Datos (IndexedDB)
+### 4. Instalación en tu computadora 
+```bash
+# Clonar el repositorio
+git clone [URL_DEL_REPOSITORIO]
+cd evita-objetos-game
 
-El juego utiliza IndexedDB para almacenar:
-- **Nombre del jugador**
-- **Puntuación final**
-- **Tiempo de supervivencia**
+# Instalar dependencias
+npm install
 
----
+# Ejecutar en modo desarrollo
+npm run dev
